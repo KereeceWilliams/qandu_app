@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class Question(models.Model):
@@ -9,4 +10,7 @@ class Question(models.Model):
   user = models.ForeignKey(User)
 
   def __unicode__(self):
-    return self.title
+      return self.title
+
+  def get_absolute_url(self):
+      return reverse("question_detail", args=[self.id])
